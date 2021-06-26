@@ -31,14 +31,14 @@
           contain
         >
           <v-img
-            src="https://demos.creative-tim.com/vuetify-material-dashboard/favicon.ico"
+            src=""
             max-height="30"
           />
         </v-list-item-avatar>
 
         <v-list-item-content>
           <v-list-item-title
-            class="display-1"
+            class="text-h4"
             v-text="profile.title"
           />
         </v-list-item-content>
@@ -75,16 +75,6 @@
       <!-- https://github.com/vuetifyjs/vuetify/pull/8574 -->
       <div />
     </v-list>
-
-    <template v-slot:append>
-      <base-item
-        :item="{
-          title: $t('upgrade'),
-          icon: 'mdi-package-up',
-          to: '/upgrade',
-        }"
-      />
-    </template>
   </v-navigation-drawer>
 </template>
 
