@@ -11,7 +11,7 @@
         lg="4"
       >
         <base-material-stats-card
-          color="info"
+          color="primary"
           icon="mdi-cloud"
           title="ອຸນຫະພູມອາກາດ"
           value="30"
@@ -37,7 +37,7 @@
         lg="4"
       >
         <base-material-stats-card
-          color="yellow"
+          color="primary"
           icon="mdi-beaker-alert-outline"
           title="ຄ່າPH"
           value="---"
@@ -50,7 +50,7 @@
         lg="4"
       >
         <base-material-stats-card
-          color="orange"
+          color="primary"
           icon="mdi-beaker-alert"
           title="ຄ່າEC"
           value="---"
@@ -62,7 +62,7 @@
         lg="4"
       >
         <base-material-stats-card
-          color="info"
+          color="primary"
           icon="mdi-thermometer"
           title="ອຸນຫະພູມນ້ຳ"
           value="----"
@@ -74,7 +74,7 @@
         lg="4"
       >
         <base-material-stats-card
-          color="info"
+          color="primary"
           icon="mdi-brightness-4"
           title="ຄ່າແສງ"
           value="----"

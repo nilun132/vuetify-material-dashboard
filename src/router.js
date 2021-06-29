@@ -34,7 +34,7 @@ export default new Router({
           component: () => import('@/views/dashboard/component/Icons'),
         },
         {
-          name: 'Typography',
+          name: 'Setting System',
           path: 'components/typography',
           component: () => import('@/views/dashboard/component/Typography'),
         },

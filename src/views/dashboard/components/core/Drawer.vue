@@ -31,7 +31,7 @@
           contain
         >
           <v-img
-            src=""
+            src="https://picsum.photos/id/11/500/300"
             max-height="30"
           />
         </v-list-item-avatar>
@@ -112,8 +112,8 @@
           to: '/tables/regular-tables',
         },
         {
-          title: 'typography',
-          icon: 'mdi-format-font',
+          title: 'Setting System',
+          icon: 'mdi-cog-outline',
           to: '/components/typography',
         },
         {

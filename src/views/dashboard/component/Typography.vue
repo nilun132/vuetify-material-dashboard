@@ -4,71 +4,186 @@
     fluid
     tag="section"
   >
-    <base-v-component
-      heading="Typography"
-      link="styles/typography"
-    />
-
     <v-row
       align="center"
       justify="center"
     >
       <v-col cols="12">
         <base-material-card
-          color="green"
+          color="primary"
         >
           <template v-slot:heading>
             <div class="text-h3 font-weight-light">
-              Material Dashboard Heading
+              -----------
             </div>
 
             <div class="text-subtitle-1 font-weight-light">
-              Created using Roboto Font Family
+              -----------
             </div>
           </template>
 
           <v-card-text>
-            <v-container
-              class="pa-0"
-              fluid
-            >
-              <v-row
-                v-for="(t, i) in typography"
-                :key="i"
-                align="center"
+            <v-row>
+              <v-container
+                class="pa-0"
+                fluid
               >
-                <v-col
-                  cols="1"
-                  md="3"
-                >
-                  <span
-                    class="tim-note"
-                    v-text="t[0]"
+                <v-col>
+                  <div class="text-center">
+                    <v-dialog
+                      v-model="dialog"
+                      width="500"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          color="primary"
+                          dark
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          Time fish 1
+                        </v-btn>
+                      </template>
+
+                      <v-card>
+                        <v-row
+                          justify="space-around"
+                          align="center"
+                        >
+                          <v-time-picker
+                            v-model="picker"
+                            ampm-in-title
+                          />
+                        </v-row>
+                        <v-card-actions>
+                          <v-spacer />
+                          <v-btn
+                            color="primary"
+                            text
+                            @click="dialog1 = false"
+                          >
+                            I accept
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                  </div>
+                </v-col>
+                <v-col>
+                  <div class="text-center">
+                    <v-dialog
+                      v-model="dialog"
+                      width="500"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          color="primary"
+                          dark
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          Time fish 2
+                        </v-btn>
+                      </template>
+
+                      <v-card>
+                        <v-row
+                          justify="space-around"
+                          align="center"
+                        >
+                          <v-time-picker
+                            v-model="picker"
+                            ampm-in-title
+                          />
+                        </v-row>
+                        <v-card-actions>
+                          <v-spacer />
+                          <v-btn
+                            color="primary"
+                            text
+                            @click="dialog2 = false"
+                          >
+                            I accept
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                  </div>
+                </v-col>
+                <v-col>
+                  <v-switch
+                    v-model="switch1"
+                    inset
+                    :label="`Max PH : ${switch1.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch2"
+                    inset
+                    :label="`Min PH : ${switch2.toString()}`"
                   />
                 </v-col>
-
-                <v-col cols="8">
-                  <component
-                    :is="t[2]"
-                    :class="i"
-                  >
-                    <template v-if="i !== 'quote'">
-                      {{ t[1] }}
-                    </template>
-
-                    <p v-if="i === 'quote'">
-                      {{ t[1] }}
-                    </p>
-                    <small v-if="i === 'quote'">Kanye West, Musician</small>
-
-                    <template v-if="i === 'small'">
-                      <br>
-                      <small>Use 'small' tag for the headers</small>
-                    </template>
-                  </component>
+                <v-col>
+                  <v-switch
+                    v-model="switch3"
+                    inset
+                    :label="`Max EC : ${switch3.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch4"
+                    inset
+                    :label="`Min EC : ${switch4.toString()}`"
+                  />
                 </v-col>
-              </v-row>
-            </v-container>
+                <v-col>
+                  <v-switch
+                    v-model="switch5"
+                    inset
+                    :label="`Max Temperature water : ${switch5.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch6"
+                    inset
+                    :label="`Min Temperature water : ${switch6.toString()}`"
+                  />
+                </v-col>
+                <v-col>
+                  <v-switch
+                    v-model="switch7"
+                    inset
+                    :label="`Max Temperature air : ${switch7.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch8"
+                    inset
+                    :label="`Min Temperature air : ${switch8.toString()}`"
+                  />
+                </v-col>
+                <v-col>
+                  <v-switch
+                    v-model="switch9"
+                    inset
+                    :label="`Max Humid : ${switch9.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch10"
+                    inset
+                    :label="`Min Humid : ${switch10.toString()}`"
+                  />
+                </v-col>
+                <v-col>
+                  <v-switch
+                    v-model="switch11"
+                    inset
+                    :label="`Max Light : ${switch11.toString()}`"
+                  />
+                  <v-switch
+                    v-model="switch12"
+                    inset
+                    :label="`Min Light : ${switch12.toString()}`"
+                  />
+                </v-col>
+              </v-container>
+            </v-row>
           </v-card-text>
         </base-material-card>
       </v-col>
@@ -77,31 +192,25 @@
 </template>
 
 <script>
-  const leader = 'I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.'
-  const leaderShort = leader.slice(0, 105) + '...'
-  const material = 'The Life of Material Dashboard'
-  const small = 'Header with small subtitle'
-
   export default {
-    data: () => ({
-      typography: {
-        'display-4': ['Display 4', material, 'h1'],
-        'display-3': ['Display 3', material, 'h2'],
-        'display-2': ['Display 2', material, 'h3'],
-        'display-1': ['Display 1', material, 'h4'],
-        headline: ['Headline', material, 'h5'],
-        'title text-uppercase': ['Title', material, 'h6'],
-        '': ['Paragraph', leader, 'p'],
-        blockquote: ['Quote', leader, 'blockquote'],
-        'text--disabled': ['Muted Text', leaderShort, 'p'],
-        'primary--text': ['Primary Text', leaderShort, 'p'],
-        'info--text': ['Info Text', leaderShort, 'p'],
-        'success--text': ['Success Text', leaderShort, 'p'],
-        'warning--text': ['Warning Text', leaderShort, 'p'],
-        'danger--text': ['Danger Text', leaderShort, 'p'],
-        small: ['Small Tag', small, 'h2'],
-      },
-    }),
+    data () {
+      return {
+        switch1: true,
+        switch2: true,
+        switch3: true,
+        switch4: true,
+        switch5: true,
+        switch6: true,
+        switch7: true,
+        switch8: true,
+        switch9: true,
+        switch10: true,
+        switch11: true,
+        switch12: true,
+        dialog1: false,
+        dialog2: false,
+      }
+    },
   }
 </script>
 
