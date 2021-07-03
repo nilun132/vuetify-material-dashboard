@@ -110,78 +110,386 @@
                     </v-dialog>
                   </div>
                 </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch1"
-                    inset
-                    :label="`Max PH : ${switch1.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch2"
-                    inset
-                    :label="`Min PH : ${switch2.toString()}`"
-                  />
-                </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch3"
-                    inset
-                    :label="`Max EC : ${switch3.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch4"
-                    inset
-                    :label="`Min EC : ${switch4.toString()}`"
-                  />
-                </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch5"
-                    inset
-                    :label="`Max Temperature water : ${switch5.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch6"
-                    inset
-                    :label="`Min Temperature water : ${switch6.toString()}`"
-                  />
-                </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch7"
-                    inset
-                    :label="`Max Temperature air : ${switch7.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch8"
-                    inset
-                    :label="`Min Temperature air : ${switch8.toString()}`"
-                  />
-                </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch9"
-                    inset
-                    :label="`Max Humid : ${switch9.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch10"
-                    inset
-                    :label="`Min Humid : ${switch10.toString()}`"
-                  />
-                </v-col>
-                <v-col>
-                  <v-switch
-                    v-model="switch11"
-                    inset
-                    :label="`Max Light : ${switch11.toString()}`"
-                  />
-                  <v-switch
-                    v-model="switch12"
-                    inset
-                    :label="`Min Light : ${switch12.toString()}`"
-                  />
-                </v-col>
+                <v-switch
+                  v-model="switch0"
+                  inset
+                  :label="`Pump active : ${switch0.toString()}`"
+                />
+                <div>
+                  <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        color="primary"
+                        elevation="5"
+                        small
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        Dropdown
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item
+                        v-for="(item, index) in items"
+                        :key="index"
+                      >
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </div>
+                <v-row
+                  no-gutters
+                >
+                  <v-col>
+                    <v-switch
+                      v-model="switch1"
+                      inset
+                      :label="`Max PH : ${switch1.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch2"
+                      inset
+                      :label="`Min PH : ${switch2.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch
+                      v-model="switch3"
+                      inset
+                      :label="`Max EC : ${switch3.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch4"
+                      inset
+                      :label="`Min EC : ${switch4.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch
+                      v-model="switch5"
+                      inset
+                      :label="`Max Tempwater : ${switch5.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch6"
+                      inset
+                      :label="`Min Tempwater : ${switch6.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch
+                      v-model="switch7"
+                      inset
+                      :label="`Max Temp air : ${switch7.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch8"
+                      inset
+                      :label="`Min Temp air : ${switch8.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch
+                      v-model="switch9"
+                      inset
+                      :label="`Max Humid : ${switch9.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch10"
+                      inset
+                      :label="`Min Humid : ${switch10.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                  <v-col>
+                    <v-switch
+                      v-model="switch11"
+                      inset
+                      :label="`Max Light : ${switch11.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                    <v-switch
+                      v-model="switch12"
+                      inset
+                      :label="`Min Light : ${switch12.toString()}`"
+                    />
+                    <div class="text-center">
+                      <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="primary"
+                            elevation="5"
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            Dropdown
+                          </v-btn>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+                  </v-col>
+                </v-row>
               </v-container>
             </v-row>
           </v-card-text>
@@ -196,6 +504,7 @@
     data () {
       return {
         switch1: true,
+        switch0: true,
         switch2: true,
         switch3: true,
         switch4: true,
@@ -209,6 +518,12 @@
         switch12: true,
         dialog1: false,
         dialog2: false,
+        items: [
+          { title: 'Click Me' },
+          { title: 'Click Me' },
+          { title: 'Click Me' },
+          { title: 'Click Me 2' },
+        ],
       }
     },
   }
