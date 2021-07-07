@@ -14,7 +14,7 @@
           color="primary"
           icon="mdi-cloud"
           title="ອຸນຫະພູມອາກາດ"
-          value="30"
+          :value="data.username"
         />
       </v-col>
 
@@ -108,6 +108,12 @@
         switch1: true,
         switch2: true,
         switch3: true,
+        data: {
+          massageText: '',
+          massages: [],
+          username: 'ton',
+          Numbertest: '12',
+        },
         dailySalesChart: {
           data: {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
