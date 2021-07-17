@@ -14,7 +14,7 @@
           color="primary"
           icon="mdi-cloud"
           title="ອຸນຫະພູມອາກາດ"
-          :value="data.username"
+          :value="get_sensor_data.temp_air"
         />
       </v-col>
 
@@ -27,7 +27,7 @@
           color="primary"
           icon="mdi-water"
           title="ຄວາມຊຸມ"
-          value="50"
+          :value="get_sensor_data.humid"
         />
       </v-col>
 
@@ -40,7 +40,7 @@
           color="primary"
           icon="mdi-beaker-alert-outline"
           title="ຄ່າPH"
-          value="---"
+          :value="get_sensor_data.ph"
         />
       </v-col>
 
@@ -53,7 +53,7 @@
           color="primary"
           icon="mdi-beaker-alert"
           title="ຄ່າEC"
-          value="---"
+          :value="get_sensor_data.ec"
         />
       </v-col>
       <v-col
@@ -65,7 +65,7 @@
           color="primary"
           icon="mdi-thermometer"
           title="ອຸນຫະພູມນ້ຳ"
-          value="----"
+          :value="get_sensor_data.temp_water"
         />
       </v-col>
       <v-col
@@ -77,12 +77,12 @@
           color="primary"
           icon="mdi-brightness-4"
           title="ຄ່າແສງ"
-          value="----"
+          :value="get_sensor_data.light"
         />
       </v-col>
     </v-row>
     <v-switch
-      v-model="switch1"
+      v-model="control_pump"
       inset
       :label="`ເປິດ-ປິດ Pump : ${switch1.toString()}`"
     />
@@ -96,6 +96,16 @@
       inset
       :label="`Auto : ${switch3.toString()}`"
     />
+    <v-switch
+      color="success"
+      :input-value="!t"
+      @change="change"
+    />
+
+    <div> {{ get_setting_data }} </div>
+    <div> {{ get_sensor_data }} </div>
+    <div> {{ get_max_temp_air }} </div>
+    <div> {{ get_max_humid }} </div>
   </v-container>
 </template>
 
@@ -307,10 +317,49 @@
         },
       }
     },
-
+    computed: {
+      doneTodosCount () {
+        return this.$store.state.todos.filter(todo => todo.done).length
+      },
+      get_setting_data () {
+        return this.$store.getters.get_setting_data
+      },
+      get_sensor_data () {
+        return this.$store.getters.get_sensor_data
+      },
+      get_max_temp_air () {
+        return this.$store.getters.get_max_temp_air
+      },
+      get_max_humid () {
+        return this.$store.getters.get_max_humid
+      },
+      control_pump () {
+        var data
+        if (this.switch1) {
+          data = 3
+        } else {
+          data = 2
+        }
+        console.log(this.switch1)
+        return this.$store.commit('SET_ARDUINO_STREAMING', data)
+      },
+    },
+    beforeCreate: function () {
+      this.$store.commit('SET_SENSOR_DATA')
+      this.$store.commit('SET_SETTING_DATA')
+    },
+    // mounted: {
+    //   initial_setting_data () {
+    //     return this.$store.commit('SET_SETTING_DATA')
+    //   },
+    // },
     methods: {
       complete (index) {
         this.list[index] = !this.list[index]
+      },
+      change () {
+        console.log('change')
+        this.t = !this.t
       },
     },
   }
