@@ -27,13 +27,7 @@
       class="hidden-sm-and-down font-weight-light"
       v-text="$route.name"
     />
-
     <v-spacer />
-    <button
-      @click="logout"
-    >
-      Logout
-    </button>
   </v-app-bar>
 </template>
 
