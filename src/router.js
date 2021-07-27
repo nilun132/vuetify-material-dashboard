@@ -56,6 +56,21 @@ export default new Router({
           path: 'upgrade',
           component: () => import('@/views/dashboard/Upgrade'),
         },
+        {
+          name: 'Signup',
+          path: 'signup',
+          component: () => import('@/views/dashboard/user/signup'),
+        },
+        {
+          name: 'Signin',
+          path: 'signin',
+          component: () => import('@/views/dashboard/user/signin'),
+        },
+        {
+          name: 'OTP',
+          path: 'otp',
+          component: () => import('@/views/dashboard/user/otp'),
+        },
       ],
     },
   ],

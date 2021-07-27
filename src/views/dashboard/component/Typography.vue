@@ -14,7 +14,7 @@
         >
           <template v-slot:heading>
             <div class="text-h3 font-weight-light">
-              -----------
+              ຕັ້ງຄ່າລະບົບ
             </div>
 
             <div class="text-subtitle-1 font-weight-light">
@@ -503,7 +503,7 @@
   export default {
     data () {
       return {
-        switch1: true,
+        switch1: 1,
         switch0: true,
         switch2: true,
         switch3: true,
@@ -519,10 +519,14 @@
         dialog1: false,
         dialog2: false,
         items: [
-          { title: 'Click Me' },
-          { title: 'Click Me' },
-          { title: 'Click Me' },
-          { title: 'Click Me 2' },
+          { title: '1' },
+          { title: '2' },
+          { title: '3' },
+          { title: '4' },
+          { title: '5' },
+          { title: '6' },
+          { title: '7' },
+          { title: '8' },
         ],
       }
     },

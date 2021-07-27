@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
     barColor: 'rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)',
@@ -24,8 +23,15 @@ export default new Vuex.Store({
     // },
     sensor_data_from_arduino: {},
     setting_data: {},
+    sensor_values: [],
+    data_from_sensor: [],
   },
   getters: {
+    test_get (state) {
+      var myTime = []
+      state.data_from_sensor.forEach(Element => myTime.push(Element))
+      return myTime
+    },
     doneTodos: state => {
       return state.todos.filter(todo => todo.done)
     },
@@ -44,6 +50,28 @@ export default new Vuex.Store({
     get_max_humid (state) {
       return state.setting_data.maxHumid
     },
+    get_sensor_value (state) {
+      return state.sensor_values
+    },
+    get_data_from_sensor (state) {
+      console.log('key data sensor is ====>>')
+      for (const [key, values] of Object.entries(state.sensor_values)) {
+        console.log(key)
+        console.log(values)
+        console.log('>>>>>>>>>>>>>>>>>>>>>')
+        for (const item in values) {
+          console.log(values[item])
+          if (item != null) {
+            // state.data_from_sensor.push(JSON.parse('{"time":"1-2-2022 00:00", "temp": "25", "humid": "64","ph":"6","light":"2495","ec":"3","temp_water":"28"}'))
+            state.data_from_sensor.push(JSON.stringify(values[item]))
+            console.log(values[item])
+          }
+        }
+      }
+      console.log('data array is ......')
+      console.log(state.data_from_sensor)
+      return state.data_from_sensor
+    },
   },
   mutations: {
     SET_BAR_IMAGE (state, payload) {
@@ -60,6 +88,13 @@ export default new Vuex.Store({
           .on('value', event => {
               console.log(event.val())
               state.setting_data = event.val()
+          })
+    },
+    SET_SENSOR_DATA_VALUES (state) {
+      firebase.database().ref('sensor-values-web')
+          .on('value', event => {
+              // console.log(event.val())
+              state.sensor_values = event.val()
           })
     },
     SET_SENSOR_DATA (state) {

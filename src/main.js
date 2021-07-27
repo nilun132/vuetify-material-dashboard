@@ -21,10 +21,12 @@ import './plugins/vee-validate'
 import vuetify from './plugins/vuetify'
 import i18n from './i18n'
 import firebase from 'firebase'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
 
 // const database = firebase.database()
 // const messRef = database.ref(mess)
-
 new Vue({
   router,
   store,

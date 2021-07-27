@@ -96,16 +96,14 @@
       inset
       :label="`Auto : ${switch3.toString()}`"
     />
-    <v-switch
-      color="success"
-      :input-value="!t"
-      @change="change"
-    />
-
-    <div> {{ get_setting_data }} </div>
-    <div> {{ get_sensor_data }} </div>
-    <div> {{ get_max_temp_air }} </div>
-    <div> {{ get_max_humid }} </div>
+    <!-- <div> {{ test_get_sensor }} </div> -->
+    <!-- <div> {{ get_sensor_value }} </div> -->
+    <!-- <div
+        v-for="(item, i) in get_sensor_value"
+        :key="i"
+      >
+        <div>{{ item }}</div>
+      </div> -->
   </v-container>
 </template>
 
@@ -318,6 +316,12 @@
       }
     },
     computed: {
+      test_get_sensor () {
+        return this.$store.getters.test_get
+      },
+      get_sensor_value () {
+        return this.$store.getters.get_data_from_sensor
+      },
       doneTodosCount () {
         return this.$store.state.todos.filter(todo => todo.done).length
       },
@@ -347,6 +351,7 @@
     beforeCreate: function () {
       this.$store.commit('SET_SENSOR_DATA')
       this.$store.commit('SET_SETTING_DATA')
+      this.$store.commit('SET_SENSOR_DATA_VALUES')
     },
     // mounted: {
     //   initial_setting_data () {
@@ -356,10 +361,6 @@
     methods: {
       complete (index) {
         this.list[index] = !this.list[index]
-      },
-      change () {
-        console.log('change')
-        this.t = !this.t
       },
     },
   }

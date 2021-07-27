@@ -3,7 +3,7 @@
     id="dashboard-core-footer"
   >
     <v-container>
-      <v-row
+      <!-- <v-row
         align="center"
         no-gutters
       >
@@ -36,7 +36,7 @@
             by <a href="https://www.creative-tim.com">Creative Tim</a> for a better web.
           </div>
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-container>
   </v-footer>
 </template>
