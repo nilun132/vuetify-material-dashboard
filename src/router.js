@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import AuthGuard from '@/auth-guard'
 
 Vue.use(Router)
 
@@ -49,6 +50,7 @@ export default new Router({
           name: 'Google Maps',
           path: 'maps/google-maps',
           component: () => import('@/views/dashboard/maps/GoogleMaps'),
+          beforeEnter: AuthGuard,
         },
         // Upgrade
         {
@@ -58,18 +60,19 @@ export default new Router({
         },
         {
           name: 'Signup',
-          path: 'signup',
-          component: () => import('@/views/dashboard/user/signup'),
+          path: 'Signup',
+          component: () => import('@/views/dashboard/user/Signup'),
         },
         {
           name: 'Signin',
-          path: 'signin',
-          component: () => import('@/views/dashboard/user/signin'),
+          path: 'Signin',
+          component: () => import('@/views/dashboard/user/Signin'),
         },
         {
-          name: 'OTP',
-          path: 'otp',
-          component: () => import('@/views/dashboard/user/otp'),
+          name: 'Profile',
+          path: 'Profile',
+          component: () => import('@/views/dashboard/user/Profile'),
+          beforeEnter: AuthGuard,
         },
       ],
     },

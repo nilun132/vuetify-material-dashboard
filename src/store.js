@@ -25,8 +25,17 @@ export default new Vuex.Store({
     setting_data: {},
     sensor_values: [],
     data_from_sensor: [],
+    loading: false,
+    error: null,
+    user: null,
   },
   getters: {
+    loading (state) {
+      return state.loading
+    },
+    error (state) {
+      return state.error
+    },
     test_get (state) {
       var myTime = []
       state.data_from_sensor.forEach(Element => myTime.push(Element))
@@ -71,6 +80,9 @@ export default new Vuex.Store({
       console.log('data array is ......')
       console.log(state.data_from_sensor)
       return state.data_from_sensor
+    },
+    user (state) {
+      return state.user
     },
   },
   mutations: {
@@ -120,11 +132,103 @@ export default new Vuex.Store({
       firebase.database().ref('arduino_streaming')
       .set(data)
     },
+    setLoading (state, payload) {
+      state.loading = payload
+    },
     setError (state, payload) {
-        state.error = payload
+      state.error = payload
+    },
+    clearError (state) {
+      state.error = null
+    },
+    setUser (state, payload) {
+      state.user = payload
     },
   },
   actions: {
-
+    clearError ({ commit }) {
+      commit('clearError')
+    },
+    setError ({ commit }, payload) {
+      commit('setError', payload)
+    },
+    signUserUp ({ commit }, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            commit('setLoading', false)
+            const newUser = {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+              photoUrl: user.photoURL,
+            }
+            commit('setUser', newUser)
+          },
+        )
+        .catch(
+          error => {
+            commit('setLoading', false)
+            commit('setError', error)
+            console.log(error)
+          },
+        )
+    },
+    signUserIn ({ commit }, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            commit('setLoading', false)
+            const newUser = {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+              photoUrl: user.photoURL,
+            }
+            commit('setUser', newUser)
+          },
+        )
+        .catch(
+          error => {
+            commit('setLoading', false)
+            commit('setError', error)
+            console.log(error)
+          },
+        )
+    },
+    autoSignIn ({ commit }, payload) {
+      commit('setUser', {
+        id: payload.uid,
+        name: payload.displayName,
+        email: payload.email,
+        photoUrl: payload.photoURL,
+      })
+    },
+    resetPasswordWithEmail ({ commit }, payload) {
+      const { email } = payload
+      commit('setLoading', true)
+      firebase.auth().sendPasswordResetEmail(email)
+      .then(
+        () => {
+          commit('setLoading', false)
+          console.log('Email Sent')
+        },
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        },
+      )
+    },
+    logout ({ commit }) {
+      firebase.auth().signOut()
+      commit('setUser', null)
+    },
   },
 })
