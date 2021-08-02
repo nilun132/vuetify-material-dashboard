@@ -17,6 +17,7 @@ export default new Router({
           name: 'Dashboard',
           path: '',
           component: () => import('@/views/dashboard/Dashboard'),
+          beforeEnter: AuthGuard,
         },
         // Pages
         {

@@ -1,106 +1,148 @@
 <template>
   <v-container>
-    <v-layout row v-if="error">
-      <v-flex xs12 sm6 offset-sm3>
-        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
+    <v-row
+      v-if="error"
+    >
+      <v-col
+        cols="12"
+        sm="6"
+        offset-sm="3"
+      >
+        <app-alert
+          :text="error.message"
+          @dismissed="onDismissed"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        offset-sm="3"
+      >
         <v-card>
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignin">
-                <v-layout row>
-                  <v-flex xs12>
+                <v-row>
+                  <v-col
+                    cols="12"
+                  >
                     <v-text-field
-                      name="email"
-                      label="Email"
                       id="email"
                       v-model="email"
+                      name="email"
+                      label="Email"
                       type="email"
-                      required></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
+                      required
+                    />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                  >
                     <v-text-field
-                      name="password"
-                      label="Password"
                       id="password"
                       v-model="password"
+                      name="password"
+                      label="Password"
                       type="password"
-                      required></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <div class="text-xs-center">
-                    <v-btn round  type="submit" :disabled="loading" :loading="loading">
-                      Sign in
-                      <v-icon right>lock_open</v-icon>
-                      <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
-                    </v-btn>
-                    </div>
-                    <div class="text-xs-center">
-                      <v-btn round color="red" dark :disabled="loading" :loading="loading" @click.prevent="onSigninGoogle">Login with Google
-                        <v-icon right dark>lock_open</v-icon>
-                        <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
+                      required
+                    />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                  >
+                    <div class="text-center">
+                      <v-btn
+                        round
+                        type="submit"
+                        :disabled="loading"
+                        :loading="loading"
+                      >
+                        Sign in
+                        <span
+                          slot="loader"
+                          class="custom-loader"
+                        >
+                          <v-icon light>cached</v-icon>
+                        </span>
                       </v-btn>
                     </div>
-                    <div class="text-xs-center">
-                      <v-btn round color="primary" dark :disabled="loading" :loading="loading" @click.prevent="onSigninFacebook">Login with Facebook
-                        <v-icon right dark>lock_open</v-icon>
-                        <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
+                    <div class="text-center">
+                      <v-btn
+                        round
+                        color="warning"
+                        dark
+                        :disabled="loading"
+                        :loading="loading"
+                        @click.prevent="onResetPassword"
+                      >
+                        Reset Password By Email
+                        <span
+                          slot="loader"
+                          class="custom-loader"
+                        >
+                          <v-icon
+                            light
+                          >
+                            cached
+                          </v-icon>
+                        </span>
                       </v-btn>
                     </div>
-                    <div class="text-xs-center">
-                      <v-btn round dark :disabled="loading" :loading="loading" @click.prevent="onSigninGithub">Login with Github
-                        <v-icon right dark>lock_open</v-icon>
-                        <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
-                      </v-btn>
-                    </div>
-                    <div class="text-xs-center">
-                      <v-btn round color="info" dark :disabled="loading" :loading="loading" @click.prevent="onSigninTwitter">Login with Twitter
-                        <v-icon right dark>lock_open</v-icon>
-                        <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
-                      </v-btn>
-                    </div>
-                    <br />
-                    <div class="text-xs-center">
-                      <v-btn round color="warning" dark :disabled="loading" :loading="loading" @click.prevent="onResetPassword">Reset Password By Email
-                        <v-icon right dark>email</v-icon>
-                        <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
-                      </v-btn>
-                    </div>
-                  </v-flex>
-                </v-layout>
+                  </v-col>
+                </v-row>
               </form>
             </v-container>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
   export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+      }
+    },
     computed: {
       user () {
         return this.$store.getters.user
+      },
+      error () {
+        return this.$store.getters.error
+      },
+      loading () {
+        return this.$store.getters.loading
+      },
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/profile')
+        }
+      },
+    },
+    methods: {
+      onSignin () {
+        this.$store.dispatch('signUserIn', { email: this.email, password: this.password })
+      },
+      onResetPassword () {
+        if (this.email === '') {
+          return this.$store.dispatch('setError', { message: 'Email can not be blank' })
+        }
+        this.$store.dispatch('resetPasswordWithEmail', { email: this.emai })
+      },
+      onDismissed () {
+        this.$store.dispatch('clearError')
       },
     },
   }
